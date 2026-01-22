@@ -21,19 +21,19 @@ WHERE TIMESTAMPDIFF(YEAR, date_of_birth, CURDATE()) > 30
 -- 4. Selezionare tutti i corsi del primo semestre del primo anno di un qualsiasi corso di laurea (286)
 SELECT *
 FROM courses
-WHERE year = 1 AND period = "I semestre"
+WHERE year = 1 AND period = 'I semestre'
 ORDER BY cfu, name
 
 -- 5. Selezionare tutti gli appelli d'esame che avvengono nel pomeriggio (dopo le 14) del 20/06/2020 (21)
 SELECT *
 FROM exams
-WHERE date = "2020-06-20" AND hour >= "14:00:00"
+WHERE date = '2020-06-20' AND hour >= '14:00:00'
 ORDER BY hour
 
 -- 6. Selezionare tutti i corsi di laurea magistrale (38)
 SELECT *
 FROM degrees
-WHERE level = "magistrale"
+WHERE level = 'magistrale'
 
 
 -- 7. Da quanti dipartimenti è composta l'università? (12)
@@ -49,7 +49,7 @@ WHERE phone IS NULL
 -- GROUP BY
 
 -- 1. Contare quanti iscritti ci sono stati ogni anno
-SELECT YEAR(enrolment_date) AS "YEAR OF ENROLMENT", COUNT(id) AS "NUMBER OF STUDENTS"
+SELECT YEAR(enrolment_date) AS 'YEAR OF ENROLMENT', COUNT(id) AS 'NUMBER OF STUDENTS'
 FROM students
 GROUP BY YEAR(enrolment_date)
 ORDER BY YEAR(enrolment_date)
