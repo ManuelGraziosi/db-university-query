@@ -16,7 +16,7 @@ ORDER BY cfu, name
 -- 3. Selezionare tutti gli studenti che hanno più di 30 anni
 SELECT *
 FROM students
-WHERE TIMESTAMPDIFF(YEAR, date_of_birth, CURDATE()) = 30
+WHERE TIMESTAMPDIFF(YEAR, date_of_birth, CURDATE()) > 30
 
 -- 4. Selezionare tutti i corsi del primo semestre del primo anno di un qualsiasi corso di laurea (286)
 SELECT *
@@ -55,9 +55,18 @@ GROUP BY YEAR(enrolment_date)
 ORDER BY YEAR(enrolment_date)
 
 -- 2. Contare gli insegnanti che hanno l'ufficio nello stesso edificio
-
+SELECT office_address, COUNT(id)
+FROM teachers
+GROUP BY office_address
+ORDER BY office_address
 
 -- 3. Calcolare la media dei voti di ogni appello d'esame
+SELECT exam_id, AVG(vote)
+FROM exam_student
+GROUP BY exam_id
 
 
 -- 4. Contare quanti corsi di laurea ci sono per ogni dipartimento
+SELECT COUNT(id)
+FROM degrees
+GROUP BY department_id
