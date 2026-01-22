@@ -49,7 +49,7 @@ WHERE phone IS NULL
 -- GROUP BY
 
 -- 1. Contare quanti iscritti ci sono stati ogni anno
-SELECT YEAR(enrolment_date) AS 'YEAR OF ENROLMENT', COUNT(id) AS 'NUMBER OF STUDENTS'
+SELECT YEAR(enrolment_date) AS 'enrolment_year', COUNT(id) AS 'quantity_students'
 FROM students
 GROUP BY YEAR(enrolment_date)
 ORDER BY YEAR(enrolment_date)
@@ -61,7 +61,7 @@ GROUP BY office_address
 ORDER BY office_address
 
 -- 3. Calcolare la media dei voti di ogni appello d'esame
-SELECT exam_id, AVG(vote)
+SELECT exam_id, AVG(`vote`)
 FROM exam_student
 GROUP BY exam_id
 
