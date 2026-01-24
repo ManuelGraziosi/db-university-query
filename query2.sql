@@ -58,13 +58,14 @@ WHERE departments.id = 5
 ORDER BY teachers.surname, teachers.name
 
 -- 7. BONUS: Selezionare per ogni studente quanti tentativi d’esame ha sostenuto per superare ciascuno dei suoi esami
-SELECT students.id AS 'student_id', students.surname AS 'student_surname', students.name AS 'student_name', courses.name AS 'course_name', COUNT(*) AS 'exam_attempt'
+SELECT students.id AS 'student_id', students.surname AS 'student_surname', students.name AS 'student_name', courses.name AS 'course_name', COUNT(exam_student.vote) AS 'exam_attempt', MAX(exam_student.vote) AS 'voto_massimo'
 FROM students 
 LEFT JOIN exam_student
 ON students.id = exam_student.student_id
-INNER JOIN exams
+LEFT JOIN exams
 ON exams.id = exam_student.exam_id
-INNER JOIN courses
+LEFT JOIN courses
 ON courses.id = exams.course_id
 GROUP BY students.id, courses.name
-ORDER BY students.id, courses.name
+HAVING voto_massimo >= 18
+ORDER BY exam_attempt
